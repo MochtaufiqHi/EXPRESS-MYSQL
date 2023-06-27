@@ -1,4 +1,6 @@
 // membuat server express 
+require('dotenv').config()
+const PORT = process.env.PORT || 8000;
 // import express
 const express = require("express")
 // accommodate to express in a variable
@@ -24,6 +26,6 @@ app.use('/', (req, res) => {
 })
 
 //express listen on port 8000
-app.listen(8000, () => {
-  console.log('Server berhasil berjalan pada port 4000')
+app.listen(PORT, () => {
+  console.log(`Berhasil berjalan di por ${PORT}`)
 })
