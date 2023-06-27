@@ -2,7 +2,11 @@
 
 const express = require("express")
 
+const usersRoutes = require('./routes/users')
+
 const app = express()
+
+app.use('/users', usersRoutes)
 
 // app.method(path, handler)
 // app.use("/", (req, res, next) => {
@@ -10,7 +14,10 @@ const app = express()
 // })
 
 app.get("/", (req, res) => {
-  res.send('Hello get metod');
+  res.json({
+    nama: "moch taufiq",
+    email: "mochtaufiq@gmail.com"
+  });
 })
 
 app.post("/", (req, res) => {
