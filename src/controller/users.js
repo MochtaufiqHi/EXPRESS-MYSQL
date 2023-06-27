@@ -1,16 +1,21 @@
-// controller for users
-const getAllUsers = (req, res) => {
-  const data = {
-    id: "1",
-    name: "mochammad taufiq hidayat",
-    email: "mochammadtaufiq779@gmail.com",
-    password: "12345"
-  }
+const UsersModel = require('../models/users')
 
-  res.json({
-    message: 'Get all users success',
-    data: data
-  })
+// controller for users
+const getAllUsers = async (req, res) => {
+    try {
+      
+      const [data] = await UsersModel.getAllUsers();
+  
+      res.json({
+        message: 'Get all users success',
+        data: data
+      })
+    } catch (error) {
+      res.status(500).json({
+        message: 'Internal Server Error',
+        serverMessage: error,
+      })
+    }
 }
 
 const createNewUsers = (req, res) => {

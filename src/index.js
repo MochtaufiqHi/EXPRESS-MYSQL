@@ -9,18 +9,6 @@ const bodyParser = require('body-parser')
 const usersRoutes = require('./routes/users')
 // import middleware users
 const middlewareLogRequest = require('./middleware/logs')
-// create connection
-const mysql = require('mysql2')
-
-const dbPool = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  // password: '',
-  database: 'express_mysql',
-  // waitForConnections: true,
-  // connectionLimit: 10,
-  // queueLimit: 0
-})
 
 // express use middleware
 app.use(middlewareLogRequest)
@@ -32,18 +20,7 @@ app.use(bodyParser.json())
 app.use('/users', usersRoutes)
 
 app.use('/', (req, res) => {
-  dbPool.execute('SELECT * FROM users', (err, rows) => {  
-    if(err){
-      res.json({
-        messsage: 'containe failed'
-      })
-    }
-
-    res.json({
-      messsage: 'connection succes',
-      data: rows,
-    })
-  })
+  
 })
 
 //express listen on port 8000
